@@ -44,6 +44,28 @@
         }
       );
       var marker = new BMapGL.Marker(point, { icon: myIcon });
+      marker.addEventListener("click", function (e) {
+        // var content = "欢迎学习数据可视化";
+        // var div = document.createElement("div");
+        // div.innerText = content;
+        // var infoWindow = new BMapGL.InfoWindow(div, {
+        //   width: 250,
+        //   height: 100,
+        //   title: "说明",
+        //   offset: new BMapGL.Size(30, 0),
+        // });
+
+        var content = `<div style="color: red;">欢迎学习数据可视化</div>`;
+        content +=
+          '<div style="color: green; font-weight: bold;">百度地图学习</div>';
+        var infoWindow = new BMapGL.InfoWindow(content, {
+          width: 250,
+          height: 100,
+          title: "说明",
+          offset: new BMapGL.Size(30, 0),
+        });
+        map.openInfoWindow(infoWindow, point);
+      });
       map.addOverlay(marker);
 
       //   var polyline = new BMapGL.Polyline(
@@ -75,12 +97,20 @@
       );
       map.addOverlay(polygon);
 
-      var label = new BMapGL.Label("欢迎学习数据可视化课程", {
+      var label = new BMapGL.Label("欢迎学习数据可视化", {
         position: point,
         offset: new BMapGL.Size(100, 10),
       });
       label.setStyle({
-        width: "",
+        width: "100px",
+        height: "20px",
+        padding: "20px",
+        color: "#fff",
+        background: "red",
+        overflow: "hidden",
+      });
+      label.addEventListener("click", function (e) {
+        alert(e.target.content);
       });
       map.addOverlay(label);
     </script>
