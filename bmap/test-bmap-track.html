@@ -59,7 +59,12 @@
         overallView: true,
       };
       var trackAnimation = new BMapGLLib.TrackAnimation(map, lines, opts);
-      trackAnimation.start();
+      document.getElementById("start").addEventListener("click", function (e) {
+        trackAnimation.start();
+      });
+      document.getElementById("cancel").addEventListener("click", function (e) {
+        trackAnimation.cancel();
+      });
     </script>
   </body>
 </html>
